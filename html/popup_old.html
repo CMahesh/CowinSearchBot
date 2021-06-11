@@ -1,0 +1,72 @@
+<html>
+<title>Cowin Search Bot</title>
+ <script src="jquery.js" defer></script>
+ <script src="popup.js" defer></script>
+<body>
+  <h2>Cowin Search Bot</h2>
+
+
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+  </div>
+
+  <div>
+    <label for="stateName">State</label>
+    <select class="text" name="stateName" id="stateNameListId" >
+    </select><br /><br />
+  </div>
+
+  <div>
+    <label for="districtName">District</label>
+    <select class="text" name="districtName" id="districtNameListId" >
+    </select><br /><br />
+  </div>
+
+
+  <div>
+    <label for="dose">Dose</label>
+    <select class="text" name="dose" id="doseId" >
+      <option>dose1</option>
+      <option>dose2</option>
+    </select><br /><br />
+  </div>
+
+  <div>
+    <label for="searchInterval">Interval</label>
+    <select class="text" name="searchInterval" id="searchIntervalId">
+<option value="1">1m</option>
+      <option value="3">3m</option>
+      <option value="5">5m</option>
+      <option value="10">10m</option>
+      <option value="15">15m</option>
+      <option value="20">20m</option>
+      <option value="25">30m</option>
+    </select>
+    <br /><br />
+  </div>
+
+  <div>
+    <label for="vaccineType">Vaccine Type</label>
+    <select class="text" name="vaccineType" id="vaccineTypeId">
+      <option value="COVISHIELD">COVISHIELD</option>
+      <option value="COVAXIN">COVAXIN</option>
+      <option value="Sputnik V">Sputnik V</option>
+      <option value="Any">Any</option>
+    </select>
+    <br /><br />
+  </div>
+  <div>
+    <label for="age">Age</label>
+    <select class="text" name="age" id="ageId">
+      <option value="18">18-45</option>
+      <option value="45">45+</option>
+    </select>
+    <br/><br/>
+  </div>
+  <button name="searchBtn" value="Search" id="searchBtnId">Notify</button>
+<button name="cancelBtn" value="cancel" id="cancelBtnId">Cancel Notification</button>
+</body>
+
+</html>
