@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Cowin Search Bot",
+  "version": "0.1",
+
+  "icons": { "16": "icon.png",
+             "48": "icon.png",
+            "128": "icon.png" },
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": true
+      },
+  "browser_action" : {
+"default_title" : "Cowin Search Bot",
+"default_popup" : "html/popup.html",
+"icons": { "16": "icon.png",
+           "48": "icon.png",
+          "128": "icon.png" }
+},
+ "permissions": ["storage","alarms","notifications","https://www.cowin.gov.in/*"]
+
+}
