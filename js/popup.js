@@ -11,7 +11,7 @@ $(function() {
     }
 
 
-    chrome.storage.local.get(['stateId','districtId','dose','vaccineType','searchInterval','districtList','age','searchType','startDate','listOfPinCodes','noOfDays','searchType'],function(data){
+    chrome.storage.local.get(['stateId','districtId','dose','vaccineType','searchInterval','districtList','age','searchType','startDate','listOfPinCodes','noOfDays','searchType','paid'],function(data){
         console.log(data);
         var districtListId=$('#districtNameListId');
         if(data.districtList)
@@ -27,7 +27,7 @@ $(function() {
         $('#searchIntervalId').val(data.searchInterval).attr('selected', true);
         $('#startDateId').val(data.startDate);
         $('#noOfDaysId').val(data.noOfDays);
-
+        $('#paidId').val(data.paid);
         if(data.searchType=='byDistrict'){
             $('#bywhatField').val('activeTab','districtTabLink');
             $('#districtTabLink').tab('show');
@@ -94,6 +94,7 @@ $(function() {
     chrome.storage.local.set({'searchInterval':$('#searchIntervalId').find("option:selected").val()});
     chrome.storage.local.set({'startDate': $('#startDateId').val() });
     chrome.storage.local.set({'noOfDays':$("#noOfDaysId").val()});
+    chrome.storage.local.set({'paid':$('#paidId').val()});
     let val = $('#bywhatField').data('activeTab');
     if(val == undefined || val=='districtTabLink'){
       chrome.storage.local.set({'searchType':'byDistrict'});

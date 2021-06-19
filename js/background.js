@@ -8,12 +8,13 @@ chrome.alarms.onAlarm.addListener(function(name) {
   if (name.name != 'cowinbotAlarm')
     return;
   console.log('alert sounded');
-  chrome.storage.local.get(['stateId', 'districtId', 'dose', 'vaccineType', 'age', 'searchType', 'listOfPinCodes', 'startDate','noOfDays'], function(data) {
+  chrome.storage.local.get(['stateId', 'districtId', 'dose', 'vaccineType', 'age', 'searchType', 'listOfPinCodes', 'startDate','noOfDays','paid'], function(data) {
     console.log(data.stateId);
     console.log(data.districtId);
 
     let required_dose = 'available_capacity_dose1';
     let age = data['age'];
+    let fee = data['paid'];
     let vaccineType = data.vaccineType;
     if (data.dose === 'dose2')
       required_dose = 'available_capacity_dose2';
@@ -47,7 +48,7 @@ chrome.alarms.onAlarm.addListener(function(name) {
           )
           .then((resp) => resp.json())
           .then(function(result) {
-            result = result.sessions.filter(x => x[required_dose] > 0 && (vaccineType == 'Any' || x.vaccine == vaccineType) && x.min_age_limit == age)
+            result = result.sessions.filter(x => x[required_dose] > 0 && (vaccineType == 'Any' || x.vaccine == vaccineType) && (fee=='any'? true:(fee=='paid'? x.fee>0 :x.fee==0)) && x.min_age_limit == age)
               .sort((x, y) => parseInt(y.pincode) - parseInt(x.pincode));
 
             for (var k = 0; k < result.length; k++) {
@@ -65,7 +66,7 @@ chrome.alarms.onAlarm.addListener(function(name) {
           fetch('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=' + pincodeValues[j] + '&date=' + todayFormat)
             .then((resp) => resp.json())
             .then(function(result) {
-              result = result.sessions.filter(x => x[required_dose] > 0 && (vaccineType == 'Any' || x.vaccine == vaccineType) && x.min_age_limit == age)
+              result = result.sessions.filter(x => x[required_dose] > 0 && (vaccineType == 'Any' || x.vaccine == vaccineType) && x.min_age_limit == age && (fee=='any'? true:(fee=='paid'? x.fee>0 :x.fee==0)) )
                 .sort((x, y) => parseInt(y.pincode) - parseInt(x.pincode));
 
                 if(result.length==0)
