@@ -8,6 +8,7 @@ Other common parameters are
 3. Number of dates from the start date to search
 4. Vaccine Type(COVISHIELD, COVAXIN)
 5. Age (18+ or 45+)
+6. Added the option to select Free, Paid or Any for vaccination fee.
 
 ##By District
 More than one District can be selected from the dropdown.
